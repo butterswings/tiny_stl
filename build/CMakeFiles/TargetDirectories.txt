@@ -1,0 +1,8 @@
+C:/Users/admin/code/cpp/tiny_stl/build/CMakeFiles/tiny_stl.dir
+C:/Users/admin/code/cpp/tiny_stl/build/CMakeFiles/test.dir
+C:/Users/admin/code/cpp/tiny_stl/build/CMakeFiles/edit_cache.dir
+C:/Users/admin/code/cpp/tiny_stl/build/CMakeFiles/rebuild_cache.dir
+C:/Users/admin/code/cpp/tiny_stl/build/test/meta/function/CMakeFiles/function_traits_test.dir
+C:/Users/admin/code/cpp/tiny_stl/build/test/meta/function/CMakeFiles/test.dir
+C:/Users/admin/code/cpp/tiny_stl/build/test/meta/function/CMakeFiles/edit_cache.dir
+C:/Users/admin/code/cpp/tiny_stl/build/test/meta/function/CMakeFiles/rebuild_cache.dir
