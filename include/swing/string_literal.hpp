@@ -5,18 +5,25 @@
 
 namespace swing
 {
-// WARNING: using string_literal<> can lead to
-// potential undefined behavior, use macro string_literal("") instead
+// WARNING: using magic_string<> can lead to runtime potential undefined behavior
+// like std::string(magic_string<>::value), use macro make_string_literal("") instead
 template <char ..._Chars>
-struct string_literal
+struct magic_string
 {
-  using type = string_literal;
+  using type = magic_string;
   static const char value[];
   static constexpr std::size_t size() { return sizeof...(_Chars); }
 };
 
 template <char ..._Chars>
-constexpr char string_literal<_Chars...>::value[] { _Chars... };
+constexpr char magic_string<_Chars...>::value[] { _Chars... };
+
+namespace string_literal
+{
+// forward declaration for string_literal::reverse
+template <typename _Literal, char _Char>
+struct push_front;
+} // namespace string_literal
 
 namespace detail
 {
@@ -24,102 +31,99 @@ template <typename _Literal>
 struct __string_literal_pop_front;
 
 template <char _Front, char ..._Chars>
-struct __string_literal_pop_front<string_literal<_Front, _Chars...>>
-: string_literal<_Chars...> { };
+struct __string_literal_pop_front<magic_string<_Front, _Chars...>>
+: magic_string<_Chars...> { };
 
 template <typename _Literal, char _Char>
 struct __string_literal_push_front;
 
 template <char ..._Chars, char _Char>
-struct __string_literal_push_front<string_literal<_Chars...>, _Char>
-: string_literal<_Char, _Chars...> { };
+struct __string_literal_push_front<magic_string<_Chars...>, _Char>
+: magic_string<_Char, _Chars...> { };
 
 template <typename _Literal, char _Char>
 struct __string_literal_push_back;
 
 template <char ..._Chars, char _Char>
-struct __string_literal_push_back<string_literal<_Chars...>, _Char>
-: string_literal<_Chars..., _Char> { };
+struct __string_literal_push_back<magic_string<_Chars...>, _Char>
+: magic_string<_Chars..., _Char> { };
 
-} // namespace detail
-
-template <typename _Literal>
-struct string_literal_pop_front
-: detail::__string_literal_pop_front<typename _Literal::type> { };
-
-template <typename _Literal, char _Char>
-struct string_literal_push_front
-: detail::__string_literal_push_front<typename _Literal::type, _Char> { };
-
-template <typename _Literal, char _Char>
-struct string_literal_push_back
-: detail::__string_literal_push_back<typename _Literal::type, _Char> { };
-
-namespace detail
-{
 template <typename _Literal, typename _Reversed>
-struct __string_literal_reverse_helper;
+struct __string_literal_reverse;
 
 template <char _Char, char ..._Chars1, char ..._Chars2>
-struct __string_literal_reverse_helper<
-         string_literal<_Char, _Chars1...>,
-         string_literal<_Chars2...>>
-: __string_literal_reverse_helper<
-    string_literal<_Chars1...>,
-    typename string_literal_push_front<string_literal<_Chars2...>, _Char>::type> { };
+struct __string_literal_reverse<
+         magic_string<_Char, _Chars1...>,
+         magic_string<_Chars2...>>
+: __string_literal_reverse<
+    magic_string<_Chars1...>,
+    typename swing::string_literal::push_front<magic_string<_Chars2...>, _Char>::type> { };
 
 template <char ..._Chars>
-struct __string_literal_reverse_helper<string_literal<>, string_literal<_Chars...>>
-: string_literal<_Chars...> { };
+struct __string_literal_reverse<magic_string<>, magic_string<_Chars...>>
+: magic_string<_Chars...> { };
 
-} // namespace detail
-
-template <typename _Literal>
-struct string_literal_reverse
-: detail::__string_literal_reverse_helper<
-    typename _Literal::type, string_literal<>> { };
-
-namespace detail
-{
 template <typename _Literal1, typename _Literal2>
 struct __string_literal_concat;
 
 template <char ..._Chars1, char ..._Chars2>
 struct __string_literal_concat<
-         string_literal<_Chars1...>,
-         string_literal<_Chars2...>>
-: string_literal<_Chars1..., _Chars2...> { };
+         magic_string<_Chars1...>,
+         magic_string<_Chars2...>>
+: magic_string<_Chars1..., _Chars2...> { };
 
 } // namespace detail
 
+namespace string_literal
+{
 template <typename _Literal>
-struct string_literal_pop_back
-: string_literal_reverse<
-    typename string_literal_pop_front<
-      typename string_literal_reverse<
+struct pop_front
+: detail::__string_literal_pop_front<typename _Literal::type> { };
+
+template <typename _Literal, char _Char>
+struct push_front
+: detail::__string_literal_push_front<typename _Literal::type, _Char> { };
+
+template <typename _Literal, char _Char>
+struct push_back
+: detail::__string_literal_push_back<typename _Literal::type, _Char> { };
+
+template <typename _Literal>
+struct reverse
+: detail::__string_literal_reverse<
+    typename _Literal::type, magic_string<>> { };
+
+template <typename _Literal>
+struct pop_back
+: reverse<
+    typename pop_front<
+      typename reverse<
         typename _Literal::type>::type>::type> { };
 
 template <typename ..._Literals>
-struct string_literal_concat;
+struct concat;
 
 template <typename _Literal1, typename _Literal2>
-struct string_literal_concat<_Literal1, _Literal2>
+struct concat<_Literal1, _Literal2>
 : detail::__string_literal_concat<
-    typename string_literal_pop_back<
+    typename pop_back<
       typename _Literal1::type>::type,
     typename _Literal2::type> { };
 
 template <typename _Literal1, typename _Literal2, typename ..._Literals>
-struct string_literal_concat<_Literal1, _Literal2, _Literals...>
-: string_literal_concat<
-    typename string_literal_concat<
+struct concat<_Literal1, _Literal2, _Literals...>
+: concat<
+    typename concat<
       typename _Literal1::type, typename _Literal2::type>::type,
     typename _Literals::type...> { };
+
+} //namespace string_literal
 
 namespace detail
 {
 template <std::size_t _Num>
-inline constexpr char __string_separator(const char(&__str)[_Num], int __idx)
+inline constexpr char
+__string_separator(const char(&__str)[_Num], int __idx)
 { return __idx < _Num ? __str[__idx] : '\0'; }
 
 } // namespace detail
@@ -130,12 +134,12 @@ inline constexpr char __string_separator(const char(&__str)[_Num], int __idx)
 #if __cplusplus > 201703L
 #define make_string_literal(__str)                                                                                     \
   decltype( []<std::size_t... __idx>(swing::index_sequence<__idx...>) constexpr {                                      \
-    return swing::string_literal<swing::detail::__string_separator(__str, __idx)...> { };                              \
+    return swing::magic_string<swing::detail::__string_separator(__str, __idx)...> { };                                \
   } ( swing::make_index_sequence<sizeof(__str)> { } ) )
 
 #elif __cplusplus > 201402L
 #define make_string_literal(__str)            \
-swing::string_literal<                        \
+swing::magic_string<                          \
 swing::detail::__string_separator(__str, 0),  \
 swing::detail::__string_separator(__str, 1),  \
 swing::detail::__string_separator(__str, 2),  \
