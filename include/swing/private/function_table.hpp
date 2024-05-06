@@ -10,13 +10,19 @@ namespace swing
 {
   namespace detail
   {
+    template <typename _Tp>
+    struct __not_function_type
+    {
+      static constexpr bool error = false;
+    };
 
     template <typename _Tp>
     struct __function_traits
     {
-      static_assert(false, "This type is not any of the following types: function type, "
-                           "function pointer type, function reference type, "
-                           "or member function pointer type");
+      static_assert(__not_function_type<_Tp>::error,
+        "This type is not any of the following types: function type, "
+        "function pointer type, function reference type, "
+        "or member function pointer type");
     };
     template <typename ..._Types>
     using params_wrapper = std::tuple<_Types...>;

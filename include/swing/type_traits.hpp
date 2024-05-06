@@ -38,10 +38,19 @@ namespace swing
 
   }
 
+  namespace detail
+  {
+    template <typename _Tp>
+    struct __declval_protector
+    {
+      static constexpr bool __stop = false;
+    };
+  }
+
   template <typename _Tp>
   auto declval() noexcept -> decltype(detail::__declval<_Tp>(0))
   {
-    static_assert(false, "declval() must not be used!");
+    static_assert(detail::__declval_protector<_Tp>::__stop, "declval() must not be used!");
     return detail::__declval<_Tp>(0);
   }
 
