@@ -10,7 +10,7 @@ BinPackParameters: true
 
 PointerAlignment: Left
 
-# NamespaceIndentation: All
+NamespaceIndentation: All
 
 
 AlignConsecutiveAssignments:

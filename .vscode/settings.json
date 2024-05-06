@@ -61,7 +61,8 @@
         "stop_token": "cpp",
         "variant": "cpp",
         "stdfloat": "cpp",
-        "version": "cpp"
+        "version": "cpp",
+        "xstring": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

@@ -3,10 +3,10 @@
 
 namespace swing
 {
-inline namespace cxx
-{
-struct __normal_iterator;
-} // namespace cxx
+  inline namespace cxx
+  {
+    struct __normal_iterator;
+  } // namespace cxx
 } // namespace swing
 
 #endif // SWING_PRIVATE_ITERATOR_HPP

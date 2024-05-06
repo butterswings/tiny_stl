@@ -2,9 +2,9 @@
 #define SWING_PRIVATE_CXX_CONFIG_H
 
 #ifndef SWING_CXX17_CONSTEXPR
-#if __cplusplus >= 201703L
-#define SWING_CXX17_CONSTEXPR constexpr
-#endif
+  #if __cplusplus >= 201703L
+    #define SWING_CXX17_CONSTEXPR constexpr
+  #endif
 #endif
 
 

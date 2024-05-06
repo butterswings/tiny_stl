@@ -158,7 +158,7 @@ namespace swing
     { using type = typename _Traits::class_type; };
 
     /// @brief  meta function which is used to judge
-    /// /////// a function is noexcept specified or not
+    /// a function is noexcept specified or not
     /// @tparam _Func Original member function pointer
     /// @tparam _Wrapper Wrapper of member function's class type (_Cp)
     /// @tparam _Params std::tuple with parameters of the function

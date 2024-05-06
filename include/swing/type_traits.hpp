@@ -532,6 +532,18 @@ namespace swing
   struct is_array<_Tp[_Size]> : true_type { };
 
   template <typename _Tp>
+  struct is_bounded_array : false_type { };
+
+  template <typename _Tp, std::size_t _Size>
+  struct is_bounded_array<_Tp[_Size]> : true_type { };
+
+  template <typename _Tp>
+  struct is_unbounded_array : false_type { };
+
+  template <typename _Tp>
+  struct is_unbounded_array<_Tp[]> : true_type { };
+
+  template <typename _Tp>
   struct is_function
   : bool_constant<
       !is_const<const _Tp>::value &&

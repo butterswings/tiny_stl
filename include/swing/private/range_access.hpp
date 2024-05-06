@@ -5,12 +5,11 @@
 
 namespace swing
 {
-
-template <typename _Tp, std::size_t _Num>
-[[nodiscard]]
-inline constexpr std::size_t
-size(const _Tp (&)[_Num]) noexcept
-{ return _Num; }
+  template <typename _Tp, std::size_t _Num>
+  [[nodiscard]]
+  inline constexpr std::size_t
+  size(const _Tp (&)[_Num]) noexcept
+  { return _Num; }
 
 } // namespace swing
 
