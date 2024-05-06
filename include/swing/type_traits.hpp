@@ -759,12 +759,12 @@ namespace swing
   template <typename _Tp, typename _Up = remove_reference_t<_Tp>>
   struct decay
   {
-    using type =
-      conditional_t<is_array<_Up>::value,
-                    add_pointer_t<remove_extent_t<_Up>>,
-                    conditional_t<is_function<_Up>::value,
-                                  add_pointer_t<_Up>,
-                                  remove_cv_t<_Up> > >;
+    using type = conditional_t<
+      is_array<_Up>::value,
+      add_pointer_t<remove_extent_t<_Up>>,
+      conditional_t<
+        is_function<_Up>::value,
+        add_pointer_t<_Up>, remove_cv_t<_Up>>>;
   };
 
   template <typename _Tp>
@@ -808,10 +808,11 @@ namespace swing
 
   template <typename _Tp, typename _Up>
   struct common_type<_Tp, _Up>
-  : conditional_t<is_same<_Tp, decay_t<_Tp>>::value &&
-                  is_same<_Up, decay_t<_Up>>::value,
-                  detail::common_type_2_impl<_Tp, _Up>,
-                  common_type<decay_t<_Tp>, decay_t<_Up> > > { };
+  : conditional_t<
+      is_same<_Tp, decay_t<_Tp>>::value &&
+      is_same<_Up, decay_t<_Up>>::value,
+      detail::common_type_2_impl<_Tp, _Up>,
+      common_type<decay_t<_Tp>, decay_t<_Up>>> { };
 
   template <typename _Tp, typename _Up, typename ..._Rest>
   struct common_type<_Tp, _Up, _Rest...>
