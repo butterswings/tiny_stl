@@ -7,8 +7,6 @@
 
 int main(int argc, char** argv)
 {
-  using t = decltype(swing::debug::perfect_name<int>());
-  std::cout << t::value;
 
   return 0;
 }
