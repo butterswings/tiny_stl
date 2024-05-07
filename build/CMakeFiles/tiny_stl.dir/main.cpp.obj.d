@@ -223,4 +223,6 @@ CMakeFiles/tiny_stl.dir/main.cpp.obj: \
  C:/Users/admin/code/cpp/tiny_stl/include/swing/private/move.hpp \
  C:/Users/admin/code/cpp/tiny_stl/include/swing/type_traits.hpp \
  C:/Users/admin/code/cpp/tiny_stl/include/swing/private/utility.hpp \
- C:/Users/admin/code/cpp/tiny_stl/include/swing/debug/perfect_name.hpp
+ C:/Users/admin/code/cpp/tiny_stl/include/swing/debug/perfect_name.hpp \
+ C:/Users/admin/code/cpp/tiny_stl/include/swing/meta/function_traits.hpp \
+ C:/Users/admin/code/cpp/tiny_stl/include/swing/private/function_table.hpp

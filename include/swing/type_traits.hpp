@@ -191,6 +191,27 @@ namespace swing
   { using type = typename remove_const<typename remove_volatile<_Tp>::type>::type; };
 
   template <typename _Tp>
+  struct add_const
+  { using type = const _Tp; };
+
+  template <typename _Tp>
+  struct add_volatile
+  { using type = volatile _Tp; };
+
+  template <typename _Tp>
+  struct add_cv
+  { using type = const volatile _Tp; };
+
+  template <typename _Tp>
+  using add_const_t = typename add_const<_Tp>::type;
+
+  template <typename _Tp>
+  using add_volatile_t = typename add_volatile<_Tp>::type;
+
+  template <typename _Tp>
+  using add_cv_t = typename add_cv<_Tp>::type;
+
+  template <typename _Tp>
   using remove_cv_t = typename remove_cv<_Tp>::type;
 
   template <typename _Tp>
@@ -829,6 +850,9 @@ namespace swing
 
   template <typename ..._Types>
   using common_type_t = typename common_type<_Types...>::type;
+
+  // TODO: std::common_reference
+
 
 } // namespace swing
 
