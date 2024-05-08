@@ -103,10 +103,8 @@ namespace swing
 
     template <char _Char, char ..._Chars1, char ..._Chars2>
     struct __string_literal_reverse<
-            magic_string<_Char, _Chars1...>,
-            magic_string<_Chars2...>>
-    : __string_literal_reverse<
-        magic_string<_Chars1...>,
+      magic_string<_Char, _Chars1...>, magic_string<_Chars2...>>
+    : __string_literal_reverse<magic_string<_Chars1...>,
         typename swing::string_literal::push_front<magic_string<_Chars2...>, _Char>::type> { };
 
     template <char ..._Chars>
@@ -118,8 +116,7 @@ namespace swing
 
     template <char ..._Chars1, char ..._Chars2>
     struct __string_literal_concat<
-            magic_string<_Chars1...>,
-            magic_string<_Chars2...>>
+      magic_string<_Chars1...>, magic_string<_Chars2...>>
     : magic_string<_Chars1..., _Chars2...> { };
 
     template <std::size_t _Idx, typename _Literal>

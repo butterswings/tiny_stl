@@ -36,8 +36,8 @@ namespace swing
 
     template <typename _Integer, _Integer... I1, _Integer... I2>
     struct __merge_and_renumber<
-             integer_sequence<_Integer, I1...>,
-             integer_sequence<_Integer, I2...>>
+      integer_sequence<_Integer, I1...>,
+      integer_sequence<_Integer, I2...>>
     : integer_sequence<_Integer, I1..., (sizeof...(I1)+I2)...> { };
 
     template <typename _Integer, typename _Constant>
@@ -50,13 +50,13 @@ namespace swing
 
     template<typename _Integer>
     struct __make_integer_sequence<
-             _Integer,
-             integral_constant<_Integer, 0>> : integer_sequence<_Integer> { };
+      _Integer, integral_constant<_Integer, 0>>
+    : integer_sequence<_Integer> { };
 
     template<typename _Integer>
     struct __make_integer_sequence<
-             _Integer,
-             integral_constant<_Integer, 1>> : integer_sequence<_Integer, 0> { };
+      _Integer, integral_constant<_Integer, 1>>
+    : integer_sequence<_Integer, 0> { };
   }
 
   template <typename _Integer, _Integer _Num>
