@@ -666,6 +666,21 @@ namespace swing
 
   namespace detail
   {
+    template <typename _AlwaysVoid, typename _Tp, typename ..._Args>
+    struct __is_constructible_impl : false_type { };
+
+    template <typename _Tp, typename ..._Args>
+    struct __is_constructible_impl<
+      void_t<decltype(new _Tp(declval<_Args>()...))>, _Tp, _Args...> : true_type { };
+  }
+
+  // BUG: is_constructible<int&, int&> should be true
+  template <typename _Tp, typename ..._Args>
+  struct is_constructible
+  : detail::__is_constructible_impl<void, _Tp, _Args...> { };
+
+  namespace detail
+  {
     template <typename _Tp>
     struct __is_member_pointer_helper
     : false_type { };
