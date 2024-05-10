@@ -1,3 +1,0 @@
-D:\ScoopApp\Scoop\apps\cmake\3.29.2\bin\cmake.exe -E rm -f CMakeFiles\function_traits_test.dir/objects.a
-D:\ScoopApp\Scoop\apps\mingw\current\bin\ar.exe qc CMakeFiles\function_traits_test.dir/objects.a @CMakeFiles\function_traits_test.dir\objects1.rsp
-D:\ScoopApp\Scoop\apps\mingw\current\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\function_traits_test.dir/objects.a -Wl,--no-whole-archive -o C:\Users\admin\code\cpp\tiny_stl\test\meta\function\bin\function_traits_test.exe -Wl,--out-implib,C:\Users\admin\code\cpp\tiny_stl\test\meta\function\bin\libfunction_traits_test.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\function_traits_test.dir\linkLibs.rsp

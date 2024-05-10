@@ -1,3 +1,0 @@
-D:\ScoopApp\Scoop\apps\cmake\3.29.2\bin\cmake.exe -E rm -f CMakeFiles\tiny_stl.dir/objects.a
-D:\ScoopApp\Scoop\apps\mingw\current\bin\ar.exe qc CMakeFiles\tiny_stl.dir/objects.a @CMakeFiles\tiny_stl.dir\objects1.rsp
-D:\ScoopApp\Scoop\apps\mingw\current\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\tiny_stl.dir/objects.a -Wl,--no-whole-archive -o C:\Users\admin\code\cpp\tiny_stl\bin\tiny_stl.exe -Wl,--out-implib,C:\Users\admin\code\cpp\tiny_stl\bin\libtiny_stl.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\tiny_stl.dir\linkLibs.rsp
