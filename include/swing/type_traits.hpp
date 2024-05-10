@@ -671,10 +671,10 @@ namespace swing
 
     template <typename _Tp, typename ..._Args>
     struct __is_constructible_impl<
-      void_t<decltype(new _Tp(declval<_Args>()...))>, _Tp, _Args...> : true_type { };
+      void_t<decltype(_Tp(declval<_Args>()...))>, _Tp, _Args...> : true_type { };
   }
 
-  // BUG: is_constructible<int&, int&> should be true
+  // BUG: is_constructible<int&, float&> should be false
   template <typename _Tp, typename ..._Args>
   struct is_constructible
   : detail::__is_constructible_impl<void, _Tp, _Args...> { };
@@ -824,6 +824,7 @@ namespace swing
 
   namespace detail
   {
+    // declval will provide rvalue ref, decay is necessary
     template <typename _Tp, typename _Up>
     using __cond_t = decltype(false ? declval<_Tp>() : declval<_Up>());
 
@@ -831,7 +832,7 @@ namespace swing
     struct _decay_cond_t { };
 
     template <typename _Tp, typename _Up>
-    struct _decay_cond_t<_Tp, _Up, void_t<__cond_t<_Tp, _Up> > >
+    struct _decay_cond_t<_Tp, _Up, void_t<__cond_t<_Tp, _Up>>>
     : decay<__cond_t<_Tp, _Up>> { };
 
     template <typename _Tp, typename _Up, typename = void>
@@ -839,10 +840,10 @@ namespace swing
     : _decay_cond_t<const _Tp&, const _Up&> { };
 
     template <typename _Tp, typename _Up>
-    struct common_type_2_impl<_Tp, _Up, void_t<__cond_t<_Tp, _Up> > >
+    struct common_type_2_impl<_Tp, _Up, void_t<__cond_t<_Tp, _Up>>>
     : _decay_cond_t<_Tp, _Up> { };
 
-    template <typename _Dummy, typename _Tp, typename _Up, typename ..._Rest>
+    template <typename _AlwaysVoid, typename _Tp, typename _Up, typename ..._Rest>
     struct common_type_multi_impl { };
 
     template <typename _Tp, typename _Up, typename ..._Rest>

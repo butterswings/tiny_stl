@@ -104,7 +104,7 @@ namespace swing
 
   template <typename _It,
             typename _Cat = typename __iterator_traits<_It>::iterator_category>
-  struct __is_random_acess_iter
+  struct __is_random_access_iter
   : is_base_of<random_access_iterator_tag, _Cat> { };
 
 } // namespace swing
