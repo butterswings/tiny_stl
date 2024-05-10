@@ -663,22 +663,6 @@ namespace swing
   using __is_array_convertible
     = is_convertible<_FromElementType(*)[], _ToElementType(*)[]>;
 
-
-  namespace detail
-  {
-    template <typename _AlwaysVoid, typename _Tp, typename ..._Args>
-    struct __is_constructible_impl : false_type { };
-
-    template <typename _Tp, typename ..._Args>
-    struct __is_constructible_impl<
-      void_t<decltype(_Tp(declval<_Args>()...))>, _Tp, _Args...> : true_type { };
-  }
-
-  // BUG: is_constructible<int&, float&> should be false
-  template <typename _Tp, typename ..._Args>
-  struct is_constructible
-  : detail::__is_constructible_impl<void, _Tp, _Args...> { };
-
   namespace detail
   {
     template <typename _Tp>
@@ -696,7 +680,6 @@ namespace swing
     template <typename _Tp, typename _Cp>
     struct __is_member_function_pointer_helper<_Tp _Cp::*>
     : is_function<_Tp>::type { };
-
   }
 
   template <typename _Tp>
@@ -729,6 +712,28 @@ namespace swing
       is_array<_Tp>,
       is_union<_Tp>,
       is_class<_Tp>> { };
+
+  namespace detail
+  {
+    template <typename _AlwaysVoid, typename _Tp, typename ..._Args>
+    struct __is_constructible_impl : false_type { };
+
+    template <typename _Tp, typename ..._Args>
+    struct __is_constructible_impl<
+      void_t<decltype(_Tp(declval<_Args>()...))>, _Tp, _Args...> : true_type { };
+
+    template <typename _AlwaysVoid, typename _Tp, typename ..._Args>
+    struct __is_constructible_helper : false_type { };
+
+    template <typename _Tp, typename ..._Args>
+    struct __is_constructible_helper<enable_if_t<
+        disjunction<is_object<_Tp>, is_reference<_Tp>>::value>, _Tp, _Args...>
+    : detail::__is_constructible_impl<void, _Tp, _Args...> { };
+  }
+
+  // BUG: is_constructible<int&, float&> should be false
+  template <typename _Tp, typename ..._Args>
+  struct is_constructible : detail::__is_constructible_helper<void, _Tp, _Args...> { };
 
   namespace detail
   {
