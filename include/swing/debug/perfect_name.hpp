@@ -11,7 +11,7 @@ namespace swing
   namespace debug
   {
     template <typename _Tp>
-    inline consteval const char* perfect_name()
+    consteval const char* perfect_name()
     { return __PRETTY_FUNCTION__; }
 
   } // namespace debug

@@ -220,7 +220,7 @@ namespace swing
   namespace detail
   {
     template <std::size_t _Num>
-    inline constexpr char
+    constexpr char
     __string_separator(const char(&__str)[_Num], std::size_t __idx)
     { return __idx < _Num ? __str[__idx] : '\0'; }
 
