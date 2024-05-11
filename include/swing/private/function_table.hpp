@@ -287,4 +287,4 @@ namespace swing
 
 
 
-#endif
+#endif // SWING_PRIVATE_FUNCTION_TABLE

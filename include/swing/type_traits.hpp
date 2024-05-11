@@ -877,4 +877,4 @@ namespace swing
 
 } // namespace swing
 
-#endif
+#endif // SWING_TYPE_TRAITS_HPP

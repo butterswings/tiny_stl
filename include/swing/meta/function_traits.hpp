@@ -254,4 +254,4 @@ namespace swing
 
 } // namespace swing
 
-#endif
+#endif // SWING_FUNCTION_TRAITS_HPP

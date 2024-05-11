@@ -30,4 +30,4 @@ namespace swing
 } // namespace swing
 
 
-#endif
+#endif // SWING_MOVE_HPP

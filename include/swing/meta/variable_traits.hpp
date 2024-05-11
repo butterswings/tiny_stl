@@ -38,4 +38,4 @@ namespace swing
 
 } // namespace swing
 
-#endif
+#endif // SWING_VARIABLE_TRAITS_HPP

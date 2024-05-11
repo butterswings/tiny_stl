@@ -68,4 +68,4 @@ namespace swing
 
 } // namespace swing
 
-#endif
+#endif // SWING_PRIVATE_UTILITY_HPP
