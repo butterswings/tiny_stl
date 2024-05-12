@@ -731,9 +731,11 @@ namespace swing
     : detail::__is_constructible_impl<void, _Tp, _Args...> { };
   }
 
-  // BUG: is_constructible<int&, float&> should be false
   template <typename _Tp, typename ..._Args>
-  struct is_constructible : detail::__is_constructible_helper<void, _Tp, _Args...> { };
+  struct is_constructible : bool_constant<__is_constructible(_Tp, _Args...)> { };
+
+  // BUG: is_constructible<int&, float&> should be false
+  // : detail::__is_constructible_helper<void, _Tp, _Args...> { };
 
   namespace detail
   {
