@@ -22,7 +22,7 @@ namespace swing
       tuple<_Tail...> _tail;
 
     public:
-    
+
       tuple() { }
       tuple(const _Head& head, const tuple<_Tail...>& tail)
         : _head(head), _tail(tail) { }
@@ -35,7 +35,7 @@ namespace swing
 
       tuple(const tuple<_Head,_Tail...>& __t)
         : tuple(__t.get_head(), __t.get_tail()) { }
-      
+
       template <typename _UHead, typename ..._UTail,
                 typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
       tuple(const tuple<_UHead, _UTail...>& __t)
@@ -74,7 +74,7 @@ namespace swing
       { return __t.get_head(); }
 
     };
-  
+
   }
 
   template <std::size_t __index, typename ..._Types>
