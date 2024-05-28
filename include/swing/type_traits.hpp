@@ -603,14 +603,14 @@ namespace swing
   namespace detail
   {
     template <typename _Base>
-    true_type  __ptr_convertion_helper(const volatile _Base*);
+    true_type  __ptr_conversion_helper(const volatile _Base*);
 
     template <typename>
-    false_type __ptr_convertion_helper(const volatile void*);
+    false_type __ptr_conversion_helper(const volatile void*);
 
     template <typename _Base, typename _Derived>
     auto __is_base_of_helper(int) ->
-      decltype(__ptr_convertion_helper<_Base>(static_cast<_Derived*>(nullptr)));
+      decltype(__ptr_conversion_helper<_Base>(static_cast<_Derived*>(nullptr)));
 
     // ambiguous and private
     template <typename, typename>
@@ -635,11 +635,11 @@ namespace swing
     auto __require_returnable(...) -> false_type;
 
     template <typename _From, typename _To>
-    auto __require_implicit_convertion(int) ->
+    auto __require_implicit_conversion(int) ->
       decltype(void(declval<void(&)(_To)>()(declval<_From>())), true_type { });
 
     template <typename, typename>
-    auto __require_implicit_convertion(...) -> false_type;
+    auto __require_implicit_conversion(...) -> false_type;
 
     template <typename _From, typename _To>
     struct __noexcept_implicit_convertion
@@ -650,7 +650,7 @@ namespace swing
   struct is_convertible
   : bool_constant<
       (decltype(detail::__require_returnable<_To>(0))::value &&
-       decltype(detail::__require_implicit_convertion<_From, _To>(0))::value) ||
+       decltype(detail::__require_implicit_conversion<_From, _To>(0))::value) ||
       (is_void<_From>::value && is_void<_To>::value)> { };
 
   template <typename _From, typename _To>
