@@ -13,8 +13,8 @@ namespace swing
   struct integral_constant
   {
     static constexpr _Tp value = __v;
-    using value_type = _Tp;
-    using type = integral_constant<_Tp, __v>;
+    using value_type           = _Tp;
+    using type                 = integral_constant<_Tp, __v>;
     constexpr operator value_type() const noexcept { return value; }
     constexpr value_type operator ()() const noexcept { return value; };
   };
@@ -878,7 +878,7 @@ namespace swing
   template <typename ..._Types>
   using common_type_t = typename common_type<_Types...>::type;
 
-  // TODO: std::common_reference
+  // TODO: C++20 std::common_reference
 
 
 } // namespace swing
