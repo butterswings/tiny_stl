@@ -587,6 +587,10 @@ namespace swing
   struct is_enum
   : bool_constant<__is_enum(_Tp)> { };
 
+  template <typename _Tp>
+  struct is_empty
+  : bool_constant<__is_empty(_Tp)> { };
+
   namespace detail
   {
     template <typename _Tp>
