@@ -90,6 +90,7 @@ namespace swing
 #endif
 
   template <typename _Iter>
+  __attribute__((__always_inline__))
   inline constexpr typename iterator_traits<_Iter>::iterator_category
   __iterator_category(const _Iter&)
   { return typename iterator_traits<_Iter>::iterator_category(); }
