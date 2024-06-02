@@ -66,6 +66,15 @@ namespace swing
   template <std::size_t _Num>
   using make_index_sequence = make_integer_sequence<std::size_t, _Num>;
 
+  template <typename _Tp>
+  struct tuple_size;
+
+  template <std::size_t _Idx, typename _Tp>
+  struct tuple_element;
+
+  template <std::size_t _Idx, typename _Tp>
+  using tuple_element_t = typename tuple_element<_Idx, _Tp>::type;
+
 } // namespace swing
 
 #endif // SWING_PRIVATE_UTILITY_HPP
