@@ -826,6 +826,20 @@ namespace swing
   template <typename _Tp>
   using decay_t = typename decay<_Tp>::type;
 
+  template <typename _Tp>
+  struct __strip_reference_wrapper
+  { using type = _Tp; };
+
+  template <typename _Tp>
+  struct __strip_reference_wrapper<swing::reference_wrapper<_Tp>>
+  { using type = _Tp&; };
+
+  template <typename _Tp>
+  using __decay_and_strip = __strip_reference_wrapper<decay_t<_Tp>>;
+
+  template <typename ..._Cond>
+  using _Require = enable_if_t<conjunction<_Cond...>::value>;
+
   template <typename ...>
   struct common_type;
 
