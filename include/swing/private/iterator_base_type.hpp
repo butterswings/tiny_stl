@@ -33,11 +33,12 @@ namespace swing
 
   template <typename _Iterator>
   struct __iterator_traits<_Iterator,
-         void_t<typename _Iterator::iterator_category,
-                typename _Iterator::value_type,
-                typename _Iterator::difference_type,
-                typename _Iterator::pointer,
-                typename _Iterator::reference>>
+    void_t<
+      typename _Iterator::iterator_category,
+      typename _Iterator::value_type,
+      typename _Iterator::difference_type,
+      typename _Iterator::pointer,
+      typename _Iterator::reference>>
   {
     using iterator_category = typename _Iterator::iterator_category;
     using value_type        = typename _Iterator::value_type;
@@ -53,7 +54,7 @@ namespace swing
 #if __cplusplus > 201703L
   // partial specialization for object pointer types
   template <typename _Tp>
-  requires swing::is_object<_Tp>::value 
+  requires swing::is_object<_Tp>::value
   struct iterator_traits<_Tp*>
   {
     using iterator_concept  = contiguous_iterator_tag;
