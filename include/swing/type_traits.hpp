@@ -9,6 +9,9 @@
 
 namespace swing
 {
+  template <typename _Tp>
+  class reference_wrapper;
+
   template <typename _Tp, _Tp __v>
   struct integral_constant
   {
