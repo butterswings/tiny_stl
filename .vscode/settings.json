@@ -62,7 +62,8 @@
         "variant": "cpp",
         "stdfloat": "cpp",
         "version": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "ranges": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
