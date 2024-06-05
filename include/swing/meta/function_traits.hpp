@@ -165,6 +165,7 @@ namespace swing
     /// @tparam _Seq std::index_sequence to spread Params...
     /// @tparam bool (is_member_function::value ? _Func(_Params...) : (_Cp.*_Func)(_Params...))
     /// @tparam bool (is_rvalue_specified::value ? _Cp&& : _Cp&)
+    ///
     template <typename _Func, typename _Wrapper, typename _Params , typename _Seq,
               bool = is_member_function_pointer<_Func>::value,
               bool = meta::is_rvalue_specified<_Func>::value>
