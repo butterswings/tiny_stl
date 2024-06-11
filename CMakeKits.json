@@ -1,18 +1,10 @@
 [
   {
-    "name": "Clang",
-    "generator":"Ninja",
-    "compilers": {
-      "C": "D:/ScoopApp/Scoop/apps/llvm/current/bin/clang.exe",
-      "CXX": "D:/ScoopApp/Scoop/apps/llvm/current/bin/clang++.exe"
-    }
-  },
-  {
     "name": "GNU",
-    "generator":"MinGW Makefiles",
+    "generator":"Unix Makefiles",
     "compilers": {
-      "C": "D:/ScoopApp/Scoop/apps/mingw/current/bin/gcc.exe",
-      "CXX": "D:/ScoopApp/Scoop/apps/mingw/current/bin/g++.exe"
+      "C": "/usr/bin/gcc",
+      "CXX": "/usr/bin/g++"
     }
   }
 ]

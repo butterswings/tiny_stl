@@ -1,12 +1,20 @@
-#define DBG_MACRO_NO_WARNING
-#include <dbg.h>
+#include <swing/tuple.hpp>
 
+#include <concepts>
 #include <iostream>
-#include <swing/string_literal.hpp>
-#include <swing/debug/perfect_name.hpp>
+#include <optional>
+#include <ranges>
+#include <thread>
+#include <vector>
+
+char buf[256];
 
 int main(int argc, char** argv)
 {
+  std::vector<int> input{1, 2, 3, 4};
+  auto result = input | std::views::reverse;
+  for (const auto& e : result)
+    std::cout << e << " ";
 
   return 0;
 }
