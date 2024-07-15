@@ -84,10 +84,6 @@ namespace swing
     return detail::__get_helper<__index>::template __get(__t);
   }
 
-  template <typename ...Args>
-  auto make_tuple(Args&& ...args)
-  { return swing::tuple<decay_t<Args>...>(forward<Args>(args)...); }
-
   inline bool operator==(const tuple<>&, const tuple<>&)
   { return true; }
 
