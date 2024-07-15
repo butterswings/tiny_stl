@@ -121,9 +121,8 @@ namespace swing
     using type = typename detail::_Nth_type<_Idx, _Types...>::type;
   };
 
-  template <std::size_t _Idx, typename _Tp>
-  using tuple_element_t = typename tuple_element<_Idx, _Tp>::type;
-
+  template <typename ..._UTypes>
+  tuple(_UTypes...) -> tuple<_UTypes...>;
 
 } // namespace swing
 
