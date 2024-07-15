@@ -126,5 +126,24 @@ namespace swing
 
 } // namespace swing
 
+#ifdef SWING_STRUCTURED_BINDING
+#include <bits/utility.h>
+
+namespace std
+{
+  template <typename ..._Types>
+  struct tuple_size<swing::tuple<_Types...>>
+  : swing::integral_constant<std::size_t, sizeof...(_Types)> { };
+
+  template <std::size_t _Idx, typename ..._Types>
+  struct tuple_element<_Idx, swing::tuple<_Types...>>
+  {
+    static_assert(_Idx < sizeof...(_Types), "tuple index must be in range");
+    using type = typename swing::detail::_Nth_type<_Idx, _Types...>::type;
+  };
+
+  // ADL get is provided in namespace swing
+} // namespace std
+#endif
 
 #endif // SWING_TUPLE_HPP
