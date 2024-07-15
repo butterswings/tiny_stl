@@ -17,42 +17,42 @@ namespace swing
   template <typename _Head, typename ..._Tail>
   class tuple<_Head, _Tail...>
   {
-    private:
-      _Head _head;
-      tuple<_Tail...> _tail;
+  private:
+    _Head _head;
+    tuple<_Tail...> _tail;
 
-    public:
+  public:
+    tuple() { }
+    tuple(const _Head& head, const tuple<_Tail...>& tail)
+    : _head(head), _tail(tail) { }
 
-      tuple() { }
-      tuple(const _Head& head, const tuple<_Tail...>& tail)
-        : _head(head), _tail(tail) { }
+    tuple(const _Head& head, const _Tail& ...tail)
+    : _head(head), _tail(tail...) { }
 
-      tuple(const _Head& head, const _Tail& ...tail)
-        : _head(head), _tail(tail...) { }
+    tuple(_Head&& head, _Tail&& ...tail)
+    : _head(move(head)), _tail(move(tail)...) { }
 
-      tuple(_Head&& head, _Tail&& ...tail)
-        : _head(move(head)), _tail(move(tail)...) { }
+    tuple(const tuple<_Head,_Tail...>& __t)
+    : tuple(__t.get_head(), __t.get_tail()) { }
 
-      tuple(const tuple<_Head,_Tail...>& __t)
-        : tuple(__t.get_head(), __t.get_tail()) { }
+    template <typename _UHead, typename ..._UTail,
+              typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
+    tuple(const tuple<_UHead, _UTail...>& __t)
+    : tuple(__t.get_head(), __t.get_tail()) { }
 
-      template <typename _UHead, typename ..._UTail,
-                typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
-      tuple(const tuple<_UHead, _UTail...>& __t)
-        : tuple(__t.get_head(), __t.get_tail()) { }
+    template <typename _UHead, typename ..._UTail,
+              typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
+    tuple(_UHead&& _uhead, _UTail&& ..._utail)
+    : _head(forward<_UHead>(_uhead)), _tail(forward<_UTail>(_utail)...) { }
 
-      template <typename _UHead, typename ..._UTail, 
-                typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
-      tuple(_UHead&& _uhead, _UTail&& ..._utail)
-        : _head(forward<_UHead>(_uhead)), _tail(forward<_UTail>(_utail)...) { }
+    _Head& get_head() { return _head; }
+    const _Head& get_head() const
+    { return _head; }
 
-      _Head& get_head() { return _head; }
-      const _Head& get_head() const 
-      { return _head; }
+    tuple<_Tail...>& get_tail() { return _tail; }
 
-      tuple<_Tail...>& get_tail() { return _tail; }
-      const tuple<_Tail...>& get_tail() const
-      { return _tail; }
+    const tuple<_Tail...>& get_tail() const
+    { return _tail; }
 
   };
 
