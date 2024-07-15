@@ -1,5 +1,7 @@
 #ifndef SWING_TUPLE_HPP
 #define SWING_TUPLE_HPP 1
+// enable structured binding
+// #define SWING_STRUCTURED_BINDING
 
 #include <cstddef>
 
