@@ -104,8 +104,37 @@ namespace swing
   bool operator!=(const tuple<_TElements...>& __t, const tuple<_UElements...>& __u)
   { return !operator==(__t, __u); };
 
-  template <typename _Tp>
-  struct tuple_size;
+  inline bool operator<(const tuple<>&, const tuple<>&)
+  { return true; }
+
+  template <typename ..._TElements, typename ..._UElements,
+            typename = enable_if_t<sizeof...(_TElements) == sizeof...(_UElements)>>
+  bool operator<(const tuple<_TElements...>& __t, const tuple<_UElements...>& __u)
+  {
+    return __t.get_head() < __u.get_head() &&
+           __t.get_tail() < __u.get_tail();
+  }
+
+  inline bool operator>(const tuple<>&, const tuple<>&)
+  { return true; }
+
+  template <typename ..._TElements, typename ..._UElements,
+            typename = enable_if_t<sizeof...(_TElements) == sizeof...(_UElements)>>
+  bool operator>(const tuple<_TElements...>& __t, const tuple<_UElements...>& __u)
+  {
+    return __t.get_head() > __u.get_head() &&
+           __t.get_tail() > __u.get_tail();
+  }
+
+  template <typename ..._TElements, typename ..._UElements,
+            typename = enable_if_t<sizeof...(_TElements) == sizeof...(_UElements)>>
+  bool operator>=(const tuple<_TElements...>& __t, const tuple<_UElements...>& __u)
+  { return !operator<(__t, __u); }
+
+  template <typename ..._TElements, typename ..._UElements,
+            typename = enable_if_t<sizeof...(_TElements) == sizeof...(_UElements)>>
+  bool operator<=(const tuple<_TElements...>& __t, const tuple<_UElements...>& __u)
+  { return !operator>(__t, __u); }
 
   template <typename ..._Types>
   struct tuple_size<swing::tuple<_Types...>>
