@@ -134,9 +134,6 @@ namespace swing
   struct tuple_size<swing::tuple<_Types...>>
   : integral_constant<std::size_t, sizeof...(_Types)> { };
 
-  template <std::size_t _Idx, typename _Tp>
-  struct tuple_element;
-
   template <std::size_t _Idx, typename ..._Types>
   struct tuple_element<_Idx, swing::tuple<_Types...>>
   {
