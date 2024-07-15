@@ -5,8 +5,9 @@
 
 #include <cstddef>
 
+#include <swing/private/tuple.hpp>
+#include <swing/private/utility.hpp>
 #include <swing/type_traits.hpp>
-#include <swing/utility.hpp>
 
 namespace swing
 {
