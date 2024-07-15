@@ -8,9 +8,6 @@
 
 namespace swing
 {
-  template <typename ...>
-  class tuple;
-
   template <>
   class tuple<> { };
 
