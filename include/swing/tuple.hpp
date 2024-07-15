@@ -72,9 +72,7 @@ namespace swing
       template <typename _Head, typename ..._Tail>
       static constexpr const _Head& __get(const tuple<_Head, _Tail...>& __t)
       { return __t.get_head(); }
-
     };
-
   }
 
   template <std::size_t __index, typename ..._Types>
