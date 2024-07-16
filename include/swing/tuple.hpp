@@ -18,19 +18,19 @@ namespace swing
   class tuple<_Head, _Tail...>
   {
   private:
-    _Head _head;
-    tuple<_Tail...> _tail;
+    _Head _M_head;
+    tuple<_Tail...> _M_tail;
 
   public:
     tuple() { }
     tuple(const _Head& head, const tuple<_Tail...>& tail)
-    : _head(head), _tail(tail) { }
+    : _M_head(head), _M_tail(tail) { }
 
     tuple(const _Head& head, const _Tail& ...tail)
-    : _head(head), _tail(tail...) { }
+    : _M_head(head), _M_tail(tail...) { }
 
     tuple(_Head&& head, _Tail&& ...tail)
-    : _head(move(head)), _tail(move(tail)...) { }
+    : _M_head(move(head)), _M_tail(move(tail)...) { }
 
     tuple(const tuple<_Head,_Tail...>& __t)
     : tuple(__t.get_head(), __t.get_tail()) { }
@@ -43,16 +43,16 @@ namespace swing
     template <typename _UHead, typename ..._UTail,
               typename = enable_if_t<sizeof...(_UTail) == sizeof...(_Tail)>>
     tuple(_UHead&& _uhead, _UTail&& ..._utail)
-    : _head(forward<_UHead>(_uhead)), _tail(forward<_UTail>(_utail)...) { }
+    : _M_head(forward<_UHead>(_uhead)), _M_tail(forward<_UTail>(_utail)...) { }
 
-    _Head& get_head() { return _head; }
+    _Head& get_head() { return _M_head; }
     const _Head& get_head() const
-    { return _head; }
+    { return _M_head; }
 
-    tuple<_Tail...>& get_tail() { return _tail; }
+    tuple<_Tail...>& get_tail() { return _M_tail; }
 
     const tuple<_Tail...>& get_tail() const
-    { return _tail; }
+    { return _M_tail; }
 
   };
 
