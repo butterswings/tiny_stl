@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.28)
 
+# set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_TOOLCHAIN_FILE "D:/ScoopApp/Scoop/apps/vcpkg/current/scripts/buildsystems/vcpkg.cmake")
+set(VCPKG_TARGET_TRIPLET x64-mingw-dynamic)
 
 project(tiny_stl)
 
