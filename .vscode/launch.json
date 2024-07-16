@@ -7,13 +7,13 @@
         {
             "type": "cmake",
             "request": "launch",
-            "name": "CMake: 配置项目",
+            "name": "CMake: configuration",
             "cmakeDebugType": "configure",
             "clean": false,
             "configureAll": false
         },
         {
-            "name": "Launch file",
+            "name": "Launch file(vscode)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/bin/${workspaceFolderBasename}",
@@ -23,7 +23,7 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "D:/ScoopApp/Scoop/apps/mingw/current/bin/gdb.exe",
+            "miDebuggerPath": "D:/ScoopApp/Scoop/apps/mingw-winlibs-llvm-ucrt/current/bin/gdb.exe",
             "preLaunchTask": "CMake Build",
             "setupCommands": [
                 {
