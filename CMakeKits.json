@@ -8,11 +8,27 @@
     }
   },
   {
-    "name": "GNU",
+    "name": "Clang-Winlibs",
+    "generator":"Ninja",
+    "compilers": {
+      "C": "D:/ScoopApp/Scoop/apps/mingw-winlibs-llvm-ucrt/current/bin/clang.exe",
+      "CXX": "D:/ScoopApp/Scoop/apps/mingw-winlibs-llvm-ucrt/current/bin/clang++.exe"
+    }
+  },
+  {
+    "name": "GCC",
     "generator":"MinGW Makefiles",
     "compilers": {
       "C": "D:/ScoopApp/Scoop/apps/mingw/current/bin/gcc.exe",
       "CXX": "D:/ScoopApp/Scoop/apps/mingw/current/bin/g++.exe"
+    }
+  },
+  {
+    "name": "GCC-Winlibs",
+    "generator":"MinGW Makefiles",
+    "compilers": {
+      "C": "D:/ScoopApp/Scoop/apps/mingw-winlibs-llvm-ucrt/current/bin/gcc.exe",
+      "CXX": "D:/ScoopApp/Scoop/apps/mingw-winlibs-llvm-ucrt/current/bin/g++.exe"
     }
   }
 ]
