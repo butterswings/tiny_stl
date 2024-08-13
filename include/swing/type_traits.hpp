@@ -854,7 +854,7 @@ namespace swing
   {
     // declval will provide rvalue ref, decay is necessary
     template <typename _Tp, typename _Up>
-    using __cond_t = decltype(false ? declval<_Tp>() : declval<_Up>());
+    using __cond_t = decltype(declval<bool>() ? declval<_Tp>() : declval<_Up>());
 
     template <typename _Tp, typename _Up, typename = void>
     struct _decay_cond_t { };
