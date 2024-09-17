@@ -424,28 +424,28 @@ namespace cxx
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator==(const __normal_iterator<_IteratorL, _Container>& __lhs,
-              const __normal_iterator<_IteratorR, _Container>& __rhs)
+             const __normal_iterator<_IteratorR, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() == __rhs.base(); }
 
   template <typename _Iterator, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator==(const __normal_iterator<_Iterator, _Container>& __lhs,
-              const __normal_iterator<_Iterator, _Container>& __rhs)
+             const __normal_iterator<_Iterator, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() == __rhs.base(); }
 
   template <typename _IteratorL, typename _IteratorR, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator!=(const __normal_iterator<_IteratorL, _Container>& __lhs,
-              const __normal_iterator<_IteratorR, _Container>& __rhs)
+             const __normal_iterator<_IteratorR, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() != __rhs.base(); }
 
   template <typename _Iterator, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
-              const __normal_iterator<_Iterator, _Container>& __rhs)
+             const __normal_iterator<_Iterator, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() != __rhs.base(); }
 
   template <typename _IteratorL, typename _IteratorR, typename _Container>
@@ -480,28 +480,28 @@ namespace cxx
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator<=(const __normal_iterator<_IteratorL, _Container>& __lhs,
-              const __normal_iterator<_IteratorR, _Container>& __rhs)
+             const __normal_iterator<_IteratorR, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() <= __rhs.base(); }
 
   template <typename _Iterator, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator<=(const __normal_iterator<_Iterator, _Container>& __lhs,
-              const __normal_iterator<_Iterator, _Container>& __rhs)
+             const __normal_iterator<_Iterator, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() <= __rhs.base(); }
 
   template <typename _IteratorL, typename _IteratorR, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator>=(const __normal_iterator<_IteratorL, _Container>& __lhs,
-              const __normal_iterator<_IteratorR, _Container>& __rhs)
+             const __normal_iterator<_IteratorR, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() >= __rhs.base(); }
 
   template <typename _Iterator, typename _Container>
   SWING_NODISCARD SWING_CXX20_CONSTEXPR
   inline bool
   operator>=(const __normal_iterator<_Iterator, _Container>& __lhs,
-              const __normal_iterator<_Iterator, _Container>& __rhs)
+             const __normal_iterator<_Iterator, _Container>& __rhs)
   SWING_NOEXCEPT { return __lhs.base() >= __rhs.base(); }
 #endif
 
@@ -509,7 +509,7 @@ namespace cxx
   // like __lhs - __rhs which will make sense,
   // and __lhs + __rhs makes no sense, we don't need the
   // operator+ between two __normal_iterators
-  // 
+  //
   // DR685. before C++11, the return value is one of the iterator's
   // difference which needs same difference_type in traits
   template <typename _IteratorL, typename _IteratorR, typename _Container>
@@ -535,7 +535,7 @@ namespace cxx
             const __normal_iterator<_Iterator, _Container>& __i)
   SWING_NOEXCEPT
   { return __normal_iterator<_Iterator, _Container>(__i.base() + __n); }
-  
+
   // TODO: other functions related to __normal_iterator
 
 } // namespace cxx
