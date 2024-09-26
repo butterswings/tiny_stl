@@ -15,6 +15,7 @@ namespace swing
   concept derived_from = is_base_of<_Base, _Derived>::value
     && is_convertible<const volatile _Derived*, const volatile _Base*>::value;
 
+  // implicit and explicit
   template <typename _From, typename _To>
   concept convertible_to = is_convertible<_From, _To>::value
     && requires { static_cast<_To>(declval<_From>()); };
