@@ -380,7 +380,11 @@ namespace swing
   { return __has_##_NESTED<_Tp>::value; }
 
   template <typename _Tp, typename ..._Types>
-  struct is_one_of { };
+  struct is_one_of
+#if __cplusplus > 201703L
+  : disjunction<is_same<_Tp, _Types>...> { };
+#else
+  { };
 
   template <typename _Tp, typename ..._Types>
   struct is_one_of<_Tp, _Tp, _Types...>
@@ -393,6 +397,7 @@ namespace swing
   template <typename _Tp, typename _Up, typename ..._Types>
   struct is_one_of<_Tp, _Up, _Types...>
   : is_one_of<_Tp, _Types...> { };
+#endif
 
 #if __cplusplus > 201703L
 #define SWING_CHAR8_T char8_t,
