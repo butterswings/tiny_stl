@@ -531,6 +531,20 @@ namespace swing
   struct is_rvalue_reference<_Tp&&>
   : true_type { };
 
+  template <typename _Tp>
+  using is_xvalue = is_rvalue_reference<_Tp>;
+
+  template <typename _Tp>
+  using is_lvalue = is_lvalue_reference<_Tp>;
+
+  template <typename _Tp>
+  using is_prvalue = negation<is_reference<_Tp>>;
+
+  template <typename _Tp>
+  using is_rvalue = negation<is_lvalue_reference<_Tp>>;
+
+  #define SWING_VALUE_CATE(expr) decltype((expr))
+
   template <typename _Tp, typename = void>
   struct add_lvalue_reference
   { using type = _Tp; };
