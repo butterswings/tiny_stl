@@ -1,6 +1,8 @@
-# <type_traits>
+# tiny_stl
 
-## common_type
+## `<type_traits>`
+
+### common_type
 
 ```cpp
 template <typename ...>
@@ -36,4 +38,16 @@ struct common_type<_Tp, _Up>
   swing::is_same<_Up, swing::decay_t<_Up>>::value,
   common_type_2_impl<_Tp, _Up>,
   common_type<swing::decay_t<_Tp>, swing::decay_t<_Up>>> { };
+
+template <typename _Tp, typename _Up, typename... _Types>
+struct common_type<_Tp, _Up, _Types...>
+: common_type<typename common_type<_Tp, _Up>::type, _Types...> { };
 ```
+
+## `<concepts>`
+
+### same_as
+
+### derived_from
+
+### convertible_to
