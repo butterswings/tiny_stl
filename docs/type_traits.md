@@ -17,10 +17,8 @@ struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 
 </details>
 
-## common_type
-
 <details>
-<summary></summary>
+<summary><h2>common_type</h2></summary>
 
 ```cpp
 template <typename ...>
