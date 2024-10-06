@@ -1,9 +1,7 @@
 # `<type_traits>`
 
-## is_class
-
 <details>
-<summary></summary>
+<summary><h2>is_class</h2></summary>
 
 ```cpp
 template <typename _Tp>
