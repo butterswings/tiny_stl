@@ -1,7 +1,8 @@
 # `<type_traits>`
 
+## is_class
+
 <details>
-<summary>## is_class</summary>
 
 ```cpp
 template <typename _Tp>
