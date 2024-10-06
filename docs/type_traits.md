@@ -1,6 +1,7 @@
 # `<type_traits>`
 
-## is_class
+<detail>
+<summary>## is_class</summary>
 
 ```cpp
 template <typename _Tp>
@@ -13,6 +14,8 @@ false_type __is_class_helper(...);
 template <typename _Tp>
 struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 ```
+
+</detail>
 
 ## common_type
 
