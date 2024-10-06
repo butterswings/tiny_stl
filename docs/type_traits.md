@@ -20,6 +20,8 @@ struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 
 ## common_type
 
+<details>
+
 ```cpp
 template <typename ...>
 struct common_type;
@@ -59,3 +61,5 @@ template <typename _Tp, typename _Up, typename... _Types>
 struct common_type<_Tp, _Up, _Types...>
 : common_type<typename common_type<_Tp, _Up>::type, _Types...> { };
 ```
+
+</details>
