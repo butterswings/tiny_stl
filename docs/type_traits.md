@@ -3,6 +3,7 @@
 ## is_class
 
 <details>
+<summary></summary>
 
 ```cpp
 template <typename _Tp>
@@ -21,6 +22,7 @@ struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 ## common_type
 
 <details>
+<summary></summary>
 
 ```cpp
 template <typename ...>
