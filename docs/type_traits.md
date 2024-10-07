@@ -1,6 +1,50 @@
 # `<type_traits>`
 
-<details>
+<details open>
+<summary><h2>conditional</h2></summary>
+
+```cpp
+template <bool, typename _If, typename>
+struct conditional
+{ using type = _If; };
+
+template <typename _If, typename _Else>
+struct conditional<false, _If, _Else>
+{ using type = _Else; };
+
+// alias
+template <bool _Cond, typename _If, typename _Else>
+using conditional_t = typename conditional<_Cond, _If, _Else>::type;
+```
+
+</details>
+
+<details open>
+<summary><h2>declval</h2></summary>
+
+```cpp
+namespace detail
+{
+  template <typename _Tp, typename _Up = _Tp&&>
+  _Up __declval(int);
+
+  // optional cv-qualifier void
+  template <typename _Tp>
+  _Tp __declval(long);
+}
+
+template <typename _Tp>
+auto declval() noexcept
+-> decltype(detail::__declval<_Tp>(0))
+{
+  static_assert(false, "declval should not be used");
+  return detail::__declval<_Tp>(0);
+}
+```
+
+</details>
+
+<details open>
 <summary><h2>is_class</h2></summary>
 
 ```cpp
@@ -17,7 +61,7 @@ struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 
 </details>
 
-<details>
+<details open>
 <summary><h2>common_type</h2></summary>
 
 ```cpp
