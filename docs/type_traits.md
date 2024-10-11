@@ -162,6 +162,13 @@ auto declval() noexcept
 
 </details>
 
+- notice
+  - declval用于不求值语境(类型推导，TMP，...)，不得直接使用，如果被ODR使用，则程序`ill-formed`
+  - others: 可以未经构造进行member-funtion call的推导
+- implementation
+  - (***optional***) cv-qualified void得到原本类型
+  - 对其余类型添加右值引用，可能产生引用折叠(***reference collapsing***)
+
 <details open>
 <summary><h2>is_class</h2></summary>
 
