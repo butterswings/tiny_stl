@@ -75,13 +75,13 @@ struct is_function
   !is_reference<_Tp>::value> { };
 ```
 
+</details>
+
 > 在C++中仅有两种类型add_const后得到的类型不满足static_assert(is_const<add_const_t<_Tp>>::value)
 
 - 因此基于此特性可以实现精简的***is_funtion*** -> `!is_const<const _Tp>::value && !is_reference<_Tp>::value`
 
 - 如果要进行反射，则需要偏特化打表，类似见[funtion_traits](../include/swing/meta/function_traits.hpp)
-
-</details>
 
 <details open>
 <summary><h2>conditional</h2></summary>
