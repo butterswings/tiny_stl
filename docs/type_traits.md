@@ -1,7 +1,95 @@
 # `<type_traits>`
 
+<details>
+<summary><h2>is_reference</h2></summary>
+
+```cpp
+template <typename _Tp>
+struct is_reference
+: false_type { };
+
+template <typename _Tp>
+struct is_reference<_Tp&>
+: true_type { };
+
+template <typename _Tp>
+struct is_reference<_Tp&&>
+: true_type { };
+```
+
+</details>
+
+<details>
+<summary><h2>is_lvalue_reference</h2></summary>
+
+```cpp
+template <typename _Tp>
+struct is_lvalue_reference
+: false_type { };
+
+template <typename _Tp>
+struct is_lvalue_reference<_Tp&>
+: true_type { };
+```
+
+</details>
+
+<details>
+<summary><h2>is_rvalue_reference</h2></summary>
+
+```cpp
+template <typename _Tp>
+struct is_rvalue_reference
+: false_type { };
+
+template <typename _Tp>
+struct is_rvalue_reference<_Tp&&>
+: true_type { };
+```
+
+</details>
+
+<details>
+<summary><h2>is_const</h2></summary>
+
+```cpp
+template <typename _Tp>
+struct is_const
+: false_type { };
+
+template <typename _Tp>
+struct is_const<const _Tp>
+: true_type { };
+```
+
+</details>
+
+<details>
+<summary><h2>is_function</h2></summary>
+
+```cpp
+template <typename _Tp>
+struct is_function
+: bool_constant<
+  !is_const<const _Tp>::value &&
+  !is_reference<_Tp>::value> { };
+```
+
+> 在C++中仅有两种类型add_const后得到的类型不满足static_assert(is_const<add_const_t<_Tp>>::value)
+
+- 因此基于此特性可以实现精简的***is_funtion*** -> `!is_const<const _Tp>::value && !is_reference<_Tp>::value`
+
+- 如果要进行反射，则需要偏特化打表，类似见[funtion_traits](../include/swing/meta/function_traits.hpp)
+
+</details>
+
 <details open>
 <summary><h2>conditional</h2></summary>
+
+<ul>
+<li>
+<details>
+<summary>实现一</summary>
 
 ```cpp
 template <bool, typename _If, typename>
@@ -16,6 +104,36 @@ struct conditional<false, _If, _Else>
 template <bool _Cond, typename _If, typename _Else>
 using conditional_t = typename conditional<_Cond, _If, _Else>::type;
 ```
+
+</details>
+</li>
+
+<li>
+<details>
+<summary>实现二</summary>
+
+```cpp
+template <bool>
+struct conditional
+{
+  template <typename _If, typename>
+  using type = _If;
+};
+
+template <>
+struct conditional<false>
+{
+  template <typename, typename _Else>
+  using type = _Else;
+};
+
+template <bool _Cond, typename _If, typename _Else>
+using conditional_t = typename conditional<_Cond>::template type<_If, _Else>;
+```
+
+</details>
+</li>
+</ul>
 
 </details>
 
