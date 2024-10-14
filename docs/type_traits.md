@@ -145,6 +145,8 @@ using conditional_t = typename conditional<_Cond>::template type<_If, _Else>;
 
 </details>
 
+> 编译期if，其中实现二的conditional中的类型别名type为模板，再为其编写alias时需要显式指明`template type<_If, _Else>`
+
 <details open>
 <summary><h2>declval</h2></summary>
 
