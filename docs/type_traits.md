@@ -1,6 +1,6 @@
 # `<type_traits>`
 
-<details>
+<details open>
 <summary><h2>is_reference</h2></summary>
 
 ```cpp
@@ -21,7 +21,7 @@ struct is_reference<_Tp&&>
 
 - 若类型满足特化`_Tp&`或`_Tp&&`则`is_reference<_Tp>::value`为`true`
 
-<details>
+<details open>
 <summary><h2>is_lvalue_reference</h2></summary>
 
 ```cpp
@@ -38,7 +38,7 @@ struct is_lvalue_reference<_Tp&>
 
 - 若类型满足特化`_Tp&`则`is_reference<_Tp>::value`为`true`
 
-<details>
+<details open>
 <summary><h2>is_rvalue_reference</h2></summary>
 
 ```cpp
@@ -55,7 +55,7 @@ struct is_rvalue_reference<_Tp&&>
 
 - 若类型满足特化`_Tp&&`则`is_reference<_Tp>::value`为`true`
 
-<details>
+<details open>
 <summary><h2>is_const</h2></summary>
 
 ```cpp
@@ -72,7 +72,7 @@ struct is_const<const _Tp>
 
 - 若类型满足特化`const _Tp`则`is_const<_Tp>::value`为`true`
 
-<details>
+<details open>
 <summary><h2>is_function</h2></summary>
 
 ```cpp
@@ -96,7 +96,7 @@ struct is_function
 
 <ul>
 <li>
-<details>
+<details open>
 <summary>实现一</summary>
 
 ```cpp
@@ -117,7 +117,7 @@ using conditional_t = typename conditional<_Cond, _If, _Else>::type;
 </li>
 
 <li>
-<details>
+<details open>
 <summary>实现二</summary>
 
 ```cpp
