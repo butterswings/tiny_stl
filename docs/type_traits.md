@@ -70,6 +70,8 @@ struct is_const<const _Tp>
 
 </details>
 
+- 若类型满足特化`const _Tp`则`is_const<_Tp>::value`为`true`
+
 <details>
 <summary><h2>is_function</h2></summary>
 
