@@ -19,6 +19,8 @@ struct is_reference<_Tp&&>
 
 </details>
 
+- 若类型满足特化`_Tp&`或`_Tp&&`则`is_reference<_Tp>::value`为`true`
+
 <details>
 <summary><h2>is_lvalue_reference</h2></summary>
 
@@ -34,6 +36,8 @@ struct is_lvalue_reference<_Tp&>
 
 </details>
 
+- 若类型满足特化`_Tp&`则`is_reference<_Tp>::value`为`true`
+
 <details>
 <summary><h2>is_rvalue_reference</h2></summary>
 
@@ -48,6 +52,8 @@ struct is_rvalue_reference<_Tp&&>
 ```
 
 </details>
+
+- 若类型满足特化`_Tp&&`则`is_reference<_Tp>::value`为`true`
 
 <details>
 <summary><h2>is_const</h2></summary>
