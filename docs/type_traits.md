@@ -176,7 +176,7 @@ auto declval() noexcept
   1. `declval`用于不求值语境(类型推导，TMP，...)，不得直接使用，如果被*ODR*使用，则程序`ill-formed`
   2. others: 可以未经构造进行`member-function call`的推导
 - implementation
-  1. (***optional***) `cv-qualified void`得到原本类型
+  1. (***optional*** `cv-qualified`) `void`得到原本类型
   2. 对其余类型添加右值引用，可能产生引用折叠(***reference collapsing***)
 
 <details open>
