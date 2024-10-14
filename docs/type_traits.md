@@ -196,6 +196,31 @@ struct is_class : decltype(__is_class_helper<_Tp>(nullptr)) { };
 
 </details>
 
+- 若nullptr能够向 `any _Tp::*` 转化，并且类型_Tp不是union类型，则符合type traits is_class
+
+<details open>
+<summary><h2>decay</h2></summary>
+
+```cpp
+template <typename _Tp, typename _Up = remove_reference_t<_Tp>>
+struct decay
+{
+  using type = conditional_t<
+    is_array<_Up>::value,
+    add_pointer_t<remove_extent_t<_Up>>,
+    conditional_t<
+      is_function<_Up>::value,
+      add_pointer_t<_Up>, remove_cv_t<_Up>>>;
+};
+
+template <typename _Tp>
+using decay_t = typename decay<_Tp>::type;
+```
+
+</details>
+
+对于函数和数组类型，转换到其指针；对于一般类型去除引用和cv限定
+
 <details open>
 <summary><h2>common_type</h2></summary>
 
